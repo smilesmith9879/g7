@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Smart Four-Wheel Drive Car</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Smart Four-Wheel Drive Car</h1>
+            <div class="status-indicators">
+                <div class="status-item">
+                    <span class="status-label">Robot:</span>
+                    <span id="robot-status" class="status-value">Disconnected</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Camera:</span>
+                    <span id="camera-status" class="status-value">Disconnected</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="video-container">
+                <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+                <div class="hud-overlay">
+                    <div class="speed-indicator">
+                        <span class="hud-label">Speed:</span>
+                        <span id="speed-value">0</span>
+                    </div>
+                    <div class="direction-indicator">
+                        <span class="hud-label">Direction:</span>
+                        <span id="direction-value">Stopped</span>
+                    </div>
+                    <div class="camera-angle-indicator">
+                        <span class="hud-label">Camera:</span>
+                        <span id="camera-angle-value">H:80° V:40°</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+
+            <div class="controls-container">
+                <div class="joystick-container">
+                    <div class="joystick left-joystick" id="car-joystick">
+                        <div class="joystick-knob"></div>
+                    </div>
+                    <div class="joystick-label">Car Control</div>
+                </div>
+
+                <div class="joystick-container">
+                    <div class="joystick right-joystick" id="camera-joystick">
+                        <div class="joystick-knob"></div>
+                    </div>
+                    <div class="joystick-label">Camera Control</div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <button id="reset-camera-btn" class="control-btn">Reset Camera</button>
+            <button id="fullscreen-btn" class="control-btn">Fullscreen</button>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/joystick.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 
